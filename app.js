@@ -89,61 +89,24 @@ function archDividerPattern(fillColor, tileWidth, tileHeight) {
 var HERO_LATTICE = latticePattern(C.brass, 0.4, 64);
 var BODY_LATTICE = latticePattern(C.brass, 0.07, 72);
 var ARCH_DIVIDER = archDividerPattern(C.linen, 48, 26);
+var CAMEL_D = "M 60 112 L 62 78 C 58 62 62 48 74 42 C 80 32 88 22 96 22 C 104 22 110 30 108 42 C 118 44 128 46 134 52 C 138 44 146 34 156 26 C 163 20 171 18 176 22 C 180 25 178 30 172 31 C 168 32 165 29 166 26 C 158 32 150 42 146 52 C 144 58 142 64 140 70 L 138 112 M 122 78 L 120 112 M 96 80 L 94 112 M 78 80 L 76 112 M 58 68 C 52 70 48 76 50 82";
+var GAZELLE_BODY_D = "M 40 70 C 40 62 46 58 54 58 C 66 56 80 55 92 56 C 104 54 116 48 124 38 C 128 33 132 28 136 26 C 130 24 126 20 126 15 M 136 26 C 138 30 140 26 142 22 M 126 15 C 122 18 120 22 121 27 L 136 26 C 132 32 128 38 130 46 L 128 66 M 92 56 L 96 66";
+var GAZELLE_LEGS_D = "M 50 66 L 48 100 M 62 66 L 60 100 M 108 62 L 110 100 M 122 60 L 126 100";
+var GAZELLE_TAIL_D = "M 42 62 C 36 64 33 68 34 73";
+var POODLE_HEAD_D = "M 62 38 a 6 6 0 0 1 5 -9 a 6 6 0 0 1 9 -4 a 6 6 0 0 1 10 0 a 6 6 0 0 1 9 4 a 6 6 0 0 1 5 9 a 7 7 0 0 1 2 10 a 7 7 0 0 1 -3 9 a 7 7 0 0 1 -8 5 a 8 8 0 0 1 -20 0 a 7 7 0 0 1 -8 -5 a 7 7 0 0 1 -3 -9 a 7 7 0 0 1 2 -10 Z";
+var POODLE_EAR_D = "M 58 40 C 50 44 48 54 52 62 C 55 66 60 65 61 60";
+var POODLE_BODY_D = "M 50 72 a 7 7 0 0 1 4 -8 a 8 8 0 0 1 10 -5 a 9 9 0 0 1 12 -2 a 9 9 0 0 1 12 2 a 8 8 0 0 1 10 5 a 7 7 0 0 1 4 8 a 8 8 0 0 1 2 10 a 8 8 0 0 1 -3 10 a 9 9 0 0 1 -48 0 a 8 8 0 0 1 -3 -10 a 8 8 0 0 1 2 -10 Z";
+var POODLE_LEG1_D = "M 58 100 L 56 118";
+var POODLE_LEG2_D = "M 104 100 L 106 118";
+var POODLE_TAIL_D = "M 108 78 C 118 74 124 66 122 58";
 function IconCamel(props) {
-  return /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 200 120", ...props }, /* @__PURE__ */ React.createElement(
-    "path",
-    {
-      d: "M 60 112 L 62 78 C 58 62 62 48 74 42 C 80 32 88 22 96 22 C 104 22 110 30 108 42\n           C 118 44 128 46 134 52 C 138 44 146 34 156 26 C 163 20 171 18 176 22 C 180 25 178 30 172 31\n           C 168 32 165 29 166 26 C 158 32 150 42 146 52 C 144 58 142 64 140 70 L 138 112\n           M 122 78 L 120 112 M 96 80 L 94 112 M 78 80 L 76 112\n           M 58 68 C 52 70 48 76 50 82",
-      fill: "none",
-      stroke: "currentColor",
-      strokeWidth: "2.5",
-      strokeLinecap: "round",
-      strokeLinejoin: "round"
-    }
-  ));
+  return /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 200 120", ...props }, /* @__PURE__ */ React.createElement("path", { d: CAMEL_D, fill: "none", stroke: "currentColor", strokeWidth: "2.5", strokeLinecap: "round", strokeLinejoin: "round" }));
 }
 function IconGazelle(props) {
-  return /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 200 120", ...props }, /* @__PURE__ */ React.createElement(
-    "path",
-    {
-      d: "M 40 70 C 40 62 46 58 54 58 C 66 56 80 55 92 56 C 104 54 116 48 124 38\n           C 128 33 132 28 136 26 C 130 24 126 20 126 15 M 136 26 C 138 30 140 26 142 22\n           M 126 15 C 122 18 120 22 121 27 L 136 26 C 132 32 128 38 130 46 L 128 66 M 92 56 L 96 66",
-      fill: "none",
-      stroke: "currentColor",
-      strokeWidth: "2.3",
-      strokeLinecap: "round",
-      strokeLinejoin: "round"
-    }
-  ), /* @__PURE__ */ React.createElement(
-    "path",
-    {
-      d: "M 50 66 L 48 100 M 62 66 L 60 100 M 108 62 L 110 100 M 122 60 L 126 100",
-      fill: "none",
-      stroke: "currentColor",
-      strokeWidth: "2.3",
-      strokeLinecap: "round"
-    }
-  ), /* @__PURE__ */ React.createElement("path", { d: "M 42 62 C 36 64 33 68 34 73", fill: "none", stroke: "currentColor", strokeWidth: "2.3", strokeLinecap: "round" }));
+  return /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 200 120", ...props }, /* @__PURE__ */ React.createElement("path", { d: GAZELLE_BODY_D, fill: "none", stroke: "currentColor", strokeWidth: "2.3", strokeLinecap: "round", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: GAZELLE_LEGS_D, fill: "none", stroke: "currentColor", strokeWidth: "2.3", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("path", { d: GAZELLE_TAIL_D, fill: "none", stroke: "currentColor", strokeWidth: "2.3", strokeLinecap: "round" }));
 }
 function IconPoodle(props) {
-  return /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 160 140", ...props }, /* @__PURE__ */ React.createElement(
-    "path",
-    {
-      d: "M 62 38 a 6 6 0 0 1 5 -9 a 6 6 0 0 1 9 -4 a 6 6 0 0 1 10 0 a 6 6 0 0 1 9 4 a 6 6 0 0 1 5 9\n           a 7 7 0 0 1 2 10 a 7 7 0 0 1 -3 9 a 7 7 0 0 1 -8 5 a 8 8 0 0 1 -20 0 a 7 7 0 0 1 -8 -5\n           a 7 7 0 0 1 -3 -9 a 7 7 0 0 1 2 -10 Z",
-      fill: "none",
-      stroke: "currentColor",
-      strokeWidth: "2.2",
-      strokeLinejoin: "round"
-    }
-  ), /* @__PURE__ */ React.createElement("path", { d: "M 58 40 C 50 44 48 54 52 62 C 55 66 60 65 61 60", fill: "none", stroke: "currentColor", strokeWidth: "2.2", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement(
-    "path",
-    {
-      d: "M 50 72 a 7 7 0 0 1 4 -8 a 8 8 0 0 1 10 -5 a 9 9 0 0 1 12 -2 a 9 9 0 0 1 12 2 a 8 8 0 0 1 10 5\n           a 7 7 0 0 1 4 8 a 8 8 0 0 1 2 10 a 8 8 0 0 1 -3 10 a 9 9 0 0 1 -48 0 a 8 8 0 0 1 -3 -10 a 8 8 0 0 1 2 -10 Z",
-      fill: "none",
-      stroke: "currentColor",
-      strokeWidth: "2.2",
-      strokeLinejoin: "round"
-    }
-  ), /* @__PURE__ */ React.createElement("path", { d: "M 58 100 L 56 118", fill: "none", stroke: "currentColor", strokeWidth: "2.2", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("circle", { cx: "55", cy: "122", r: "4", fill: "none", stroke: "currentColor", strokeWidth: "2.2" }), /* @__PURE__ */ React.createElement("path", { d: "M 104 100 L 106 118", fill: "none", stroke: "currentColor", strokeWidth: "2.2", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("circle", { cx: "107", cy: "122", r: "4", fill: "none", stroke: "currentColor", strokeWidth: "2.2" }), /* @__PURE__ */ React.createElement("path", { d: "M 108 78 C 118 74 124 66 122 58", fill: "none", stroke: "currentColor", strokeWidth: "2.2", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("circle", { cx: "122", cy: "54", r: "6", fill: "none", stroke: "currentColor", strokeWidth: "2.2" }));
+  return /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 160 140", ...props }, /* @__PURE__ */ React.createElement("path", { d: POODLE_HEAD_D, fill: "none", stroke: "currentColor", strokeWidth: "2.2", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: POODLE_EAR_D, fill: "none", stroke: "currentColor", strokeWidth: "2.2", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("path", { d: POODLE_BODY_D, fill: "none", stroke: "currentColor", strokeWidth: "2.2", strokeLinejoin: "round" }), /* @__PURE__ */ React.createElement("path", { d: POODLE_LEG1_D, fill: "none", stroke: "currentColor", strokeWidth: "2.2", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("circle", { cx: "55", cy: "122", r: "4", fill: "none", stroke: "currentColor", strokeWidth: "2.2" }), /* @__PURE__ */ React.createElement("path", { d: POODLE_LEG2_D, fill: "none", stroke: "currentColor", strokeWidth: "2.2", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("circle", { cx: "107", cy: "122", r: "4", fill: "none", stroke: "currentColor", strokeWidth: "2.2" }), /* @__PURE__ */ React.createElement("path", { d: POODLE_TAIL_D, fill: "none", stroke: "currentColor", strokeWidth: "2.2", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("circle", { cx: "122", cy: "54", r: "6", fill: "none", stroke: "currentColor", strokeWidth: "2.2" }));
 }
 function IconFlagUAE(props) {
   return /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 60 36", ...props }, /* @__PURE__ */ React.createElement("rect", { x: "0", y: "0", width: "15", height: "36", fill: "#B85C4A" }), /* @__PURE__ */ React.createElement("rect", { x: "15", y: "0", width: "45", height: "12", fill: "#7A8F5C" }), /* @__PURE__ */ React.createElement("rect", { x: "15", y: "12", width: "45", height: "12", fill: "#EFE6D3" }), /* @__PURE__ */ React.createElement("rect", { x: "15", y: "24", width: "45", height: "12", fill: "#2A3138" }));
@@ -151,6 +114,30 @@ function IconFlagUAE(props) {
 function IconFlagItaly(props) {
   return /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 60 36", ...props }, /* @__PURE__ */ React.createElement("rect", { x: "0", y: "0", width: "20", height: "36", fill: "#7A8F5C" }), /* @__PURE__ */ React.createElement("rect", { x: "20", y: "0", width: "20", height: "36", fill: "#EFE6D3" }), /* @__PURE__ */ React.createElement("rect", { x: "40", y: "0", width: "20", height: "36", fill: "#B85C4A" }));
 }
+function animalsPattern(color, opacity, size) {
+  const grp = (paths, x, y, s) => {
+    const sw = (2.4 / s).toFixed(2);
+    const tags = paths.map((d) => `<path d="${d}" fill="none" stroke="${color}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round"/>`).join("");
+    return `<g transform="translate(${x} ${y}) scale(${s})">${tags}</g>`;
+  };
+  const camel = (x, y, s) => grp([CAMEL_D], x, y, s);
+  const gazelle = (x, y, s) => grp([GAZELLE_BODY_D, GAZELLE_LEGS_D, GAZELLE_TAIL_D], x, y, s);
+  const poodle = (x, y, s) => grp([POODLE_HEAD_D, POODLE_EAR_D, POODLE_BODY_D, POODLE_LEG1_D, POODLE_LEG2_D, POODLE_TAIL_D], x, y, s);
+  const content = [
+    camel(4, 6, 0.22),
+    gazelle(196, 12, 0.2),
+    poodle(70, 40, 0.22),
+    camel(230, 130, 0.19),
+    gazelle(20, 170, 0.19),
+    poodle(160, 190, 0.21),
+    camel(90, 250, 0.2),
+    gazelle(260, 260, 0.18),
+    poodle(0, 290, 0.2)
+  ].join("");
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='${size}' height='${size}' viewBox='0 0 ${size} ${size}'><g opacity='${opacity}'>${content}</g></svg>`;
+  return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
+}
+var BODY_ANIMALS = animalsPattern(C.brass, 0.16, 340);
 function Toast({ message, onDone }) {
   useEffect(() => {
     const t = setTimeout(onDone, 2600);
@@ -593,7 +580,7 @@ function BabyRegistry() {
     return /* @__PURE__ */ React.createElement("div", { className: "min-h-screen flex items-center justify-center", style: { backgroundColor: C.linen } }, /* @__PURE__ */ React.createElement(Loader2, { className: "w-6 h-6 animate-spin", style: { color: C.brass } }));
   }
   const visibleItems = activeCategory === "tutti" ? items : items.filter((i) => i.category === activeCategory);
-  return /* @__PURE__ */ React.createElement("div", { className: "min-h-screen", style: { backgroundColor: C.linen, backgroundImage: BODY_LATTICE, backgroundRepeat: "repeat" } }, /* @__PURE__ */ React.createElement("style", null, `
+  return /* @__PURE__ */ React.createElement("div", { className: "min-h-screen", style: { backgroundColor: C.linen, backgroundImage: `${BODY_ANIMALS}, ${BODY_LATTICE}`, backgroundRepeat: "repeat, repeat" } }, /* @__PURE__ */ React.createElement("style", null, `
         @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&display=swap');
         * { font-family: 'Karla', sans-serif; }
         .font-display { font-family: 'Fraunces', serif !important; }
