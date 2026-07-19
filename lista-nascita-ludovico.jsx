@@ -576,7 +576,7 @@ function ItemFormModal({ initial, onSave, onClose }) {
 }
 
 // ---------- Admin panel ----------
-function AdminPanel({ settings, items, initialEditItem, onClose, onSaveSettings, onAddItem, onUpdateItem, onDeleteItem }) {
+function AdminPanel({ settings, items, initialEditItem, onClose, onSaveSettings, onAddItem, onUpdateItem, onDeleteItem, onUnreserve, onRemoveContribution }) {
   const [formOpen, setFormOpen] = useState(!!initialEditItem);
   const [editing, setEditing] = useState(initialEditItem || null);
   const [babyName, setBabyName] = useState(settings.babyName);
@@ -604,10 +604,10 @@ function AdminPanel({ settings, items, initialEditItem, onClose, onSaveSettings,
   const ledger = [];
   items.forEach((it) => {
     if (it.reservedBy) {
-      ledger.push({ type: 'reserve', itemName: it.name, name: it.reservedBy, amount: it.price, date: it.reservedAt });
+      ledger.push({ type: 'reserve', itemId: it.id, itemName: it.name, name: it.reservedBy, amount: it.price, date: it.reservedAt });
     }
-    (it.contributors || []).forEach((c) => {
-      ledger.push({ type: 'contribute', itemName: it.name, name: c.name, amount: c.amount, date: c.date });
+    (it.contributors || []).forEach((c, idx) => {
+      ledger.push({ type: 'contribute', itemId: it.id, contribIndex: idx, itemName: it.name, name: c.name, amount: c.amount, date: c.date });
     });
   });
   ledger.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -641,14 +641,23 @@ function AdminPanel({ settings, items, initialEditItem, onClose, onSaveSettings,
                     {row.itemName} · {formatDate(row.date)}
                   </p>
                 </div>
-                <span className="text-sm font-semibold shrink-0 text-right" style={{ color: row.type === 'reserve' ? C.textMuted : C.sage }}>
-                  {row.type === 'reserve' ? formatDual(row.amount, settings) : `+ ${formatDual(row.amount, settings)}`}
-                </span>
+                <div className="flex items-center gap-2 shrink-0">
+                  <span className="text-sm font-semibold text-right" style={{ color: row.type === 'reserve' ? C.textMuted : C.sage }}>
+                    {row.type === 'reserve' ? formatDual(row.amount, settings) : `+ ${formatDual(row.amount, settings)}`}
+                  </span>
+                  <button
+                    onClick={() => (row.type === 'reserve' ? onUnreserve(row.itemId) : onRemoveContribution(row.itemId, row.contribIndex))}
+                    title={row.type === 'reserve' ? 'Annulla prenotazione' : 'Rimuovi (se non arrivata)'}
+                    style={{ color: C.textMuted }}
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </div>
             ))}
           </div>
           <p className="text-xs mt-2" style={{ color: C.textMuted }}>
-            Gli importi con “+” sono contributi PayPal segnati come inviati dagli ospiti: confrontali col tuo saldo PayPal per essere sicuro che siano arrivati davvero.
+            Gli importi con “+” sono contributi PayPal segnati come inviati dagli ospiti: confrontali col tuo saldo PayPal, e usa il cestino per rimuovere quelli mai arrivati davvero.
           </p>
         </section>
 
@@ -885,6 +894,14 @@ export default function BabyRegistry() {
     updateItem(id, { contributed: item.contributed + amount, contributors });
     showToast('Contributo registrato, grazie!');
   };
+  const removeContribution = (itemId, contribIndex) => {
+    const item = items.find((i) => i.id === itemId);
+    if (!item) return;
+    const contributors = item.contributors.filter((_, idx) => idx !== contribIndex);
+    const contributed = contributors.reduce((s, c) => s + c.amount, 0);
+    updateItem(itemId, { contributors, contributed });
+    showToast('Gift Card rimossa');
+  };
 
   const handleGateSubmit = (val, setErr) => {
     if (!settings.adminPasscode) {
@@ -1036,6 +1053,8 @@ export default function BabyRegistry() {
           onAddItem={addItem}
           onUpdateItem={(id, patch) => { updateItem(id, patch); showToast('Regalo aggiornato'); }}
           onDeleteItem={deleteItem}
+          onUnreserve={unreserveItem}
+          onRemoveContribution={removeContribution}
         />
       )}
 
