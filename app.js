@@ -59,7 +59,11 @@ function uid() {
 }
 function paypalLinkFor(handleRaw, amount) {
   if (!handleRaw) return null;
-  const handle = handleRaw.trim().replace(/^@/, "").replace(/^https?:\/\/(www\.)?paypal\.me\//i, "").replace(/\/$/, "");
+  let handle = handleRaw.trim();
+  handle = handle.replace(/^https?:\/\//i, "");
+  handle = handle.replace(/^(www\.)?paypal\.me\//i, "");
+  handle = handle.replace(/^@/, "");
+  handle = handle.replace(/\/+$/, "");
   if (!handle) return null;
   const amt = amount ? `/${amount}` : "";
   return `https://paypal.me/${handle}${amt}`;
@@ -138,6 +142,7 @@ function animalsPattern(color, opacity, size) {
   return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
 }
 var BODY_ANIMALS = animalsPattern(C.brass, 0.16, 340);
+var HERO_ANIMALS = animalsPattern(C.brass, 0.3, 300);
 function Toast({ message, onDone }) {
   useEffect(() => {
     const t = setTimeout(onDone, 2600);
@@ -595,7 +600,7 @@ function BabyRegistry() {
         @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&display=swap');
         * { font-family: 'Karla', sans-serif; }
         .font-display { font-family: 'Fraunces', serif !important; }
-      `), /* @__PURE__ */ React.createElement("header", { className: "relative px-6 py-16 overflow-hidden", style: { backgroundColor: C.ink, backgroundImage: HERO_LATTICE, backgroundRepeat: "repeat" } }, /* @__PURE__ */ React.createElement(IconCamel, { className: "hidden sm:block absolute pointer-events-none", style: { top: "10px", left: "16px", width: "132px", height: "auto", color: C.brass, opacity: 0.45 } }), /* @__PURE__ */ React.createElement(IconPoodle, { className: "hidden sm:block absolute pointer-events-none", style: { bottom: "4px", left: "40px", width: "84px", height: "auto", color: C.brass, opacity: 0.45 } }), /* @__PURE__ */ React.createElement(IconGazelle, { className: "hidden sm:block absolute pointer-events-none", style: { bottom: "14px", right: "20px", width: "128px", height: "auto", color: C.brass, opacity: 0.45 } }), /* @__PURE__ */ React.createElement("div", { className: "hidden sm:flex absolute flex-col gap-2", style: { top: "22px", right: "28px" } }, /* @__PURE__ */ React.createElement(IconFlagUAE, { className: "rounded-sm", style: { width: "38px", height: "auto", opacity: 0.8 } }), /* @__PURE__ */ React.createElement(IconFlagItaly, { className: "rounded-sm", style: { width: "38px", height: "auto", opacity: 0.8 } })), /* @__PURE__ */ React.createElement("div", { className: "max-w-4xl mx-auto text-center flex flex-col items-center gap-3 relative" }, /* @__PURE__ */ React.createElement("span", { className: "text-xs font-semibold uppercase tracking-widest", style: { color: C.brassSoft } }, "Lista nascita"), /* @__PURE__ */ React.createElement("h1", { className: "font-display text-4xl sm:text-5xl", style: { color: C.textOnInk } }, settings.babyName), /* @__PURE__ */ React.createElement("p", { className: "text-sm", style: { color: C.textOnInkMuted } }, "Arriva a ", settings.dueLabel), /* @__PURE__ */ React.createElement("p", { className: "text-base max-w-xl mt-2", style: { color: C.textOnInk } }, settings.welcomeMessage), /* @__PURE__ */ React.createElement("p", { className: "text-xs max-w-md mt-1", style: { color: C.textOnInkMuted } }, "Scegli un regalo qui sotto: puoi comprarlo tu stesso sul sito del negozio, oppure mandare una Gift Card via PayPal \u2014 ci pensiamo noi.")), /* @__PURE__ */ React.createElement(
+      `), /* @__PURE__ */ React.createElement("header", { className: "relative px-6 py-16 overflow-hidden", style: { backgroundColor: C.ink, backgroundImage: `${HERO_ANIMALS}, ${HERO_LATTICE}`, backgroundRepeat: "repeat, repeat" } }, /* @__PURE__ */ React.createElement(IconCamel, { className: "hidden sm:block absolute pointer-events-none", style: { top: "10px", left: "16px", width: "132px", height: "auto", color: C.brass, opacity: 0.45 } }), /* @__PURE__ */ React.createElement(IconPoodle, { className: "hidden sm:block absolute pointer-events-none", style: { bottom: "4px", left: "40px", width: "84px", height: "auto", color: C.brass, opacity: 0.45 } }), /* @__PURE__ */ React.createElement(IconGazelle, { className: "hidden sm:block absolute pointer-events-none", style: { bottom: "14px", right: "20px", width: "128px", height: "auto", color: C.brass, opacity: 0.45 } }), /* @__PURE__ */ React.createElement("div", { className: "hidden sm:flex absolute flex-col gap-2", style: { top: "22px", right: "28px" } }, /* @__PURE__ */ React.createElement(IconFlagUAE, { className: "rounded-sm", style: { width: "38px", height: "auto", opacity: 0.8 } }), /* @__PURE__ */ React.createElement(IconFlagItaly, { className: "rounded-sm", style: { width: "38px", height: "auto", opacity: 0.8 } })), /* @__PURE__ */ React.createElement("div", { className: "max-w-4xl mx-auto text-center flex flex-col items-center gap-3 relative" }, /* @__PURE__ */ React.createElement("span", { className: "text-xs font-semibold uppercase tracking-widest", style: { color: C.brassSoft } }, "Lista nascita"), /* @__PURE__ */ React.createElement("h1", { className: "font-display text-4xl sm:text-5xl", style: { color: C.textOnInk } }, settings.babyName), /* @__PURE__ */ React.createElement("p", { className: "text-sm", style: { color: C.textOnInkMuted } }, "Arriva a ", settings.dueLabel), /* @__PURE__ */ React.createElement("p", { className: "text-base max-w-xl mt-2", style: { color: C.textOnInk } }, settings.welcomeMessage), /* @__PURE__ */ React.createElement("p", { className: "text-xs max-w-md mt-1", style: { color: C.textOnInkMuted } }, "Scegli un regalo qui sotto: puoi comprarlo tu stesso sul sito del negozio, oppure mandare una Gift Card via PayPal \u2014 ci pensiamo noi.")), /* @__PURE__ */ React.createElement(
     "div",
     {
       className: "absolute bottom-0 left-0 right-0",

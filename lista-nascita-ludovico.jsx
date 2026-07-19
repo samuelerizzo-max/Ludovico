@@ -48,7 +48,11 @@ function uid() {
 
 function paypalLinkFor(handleRaw, amount) {
   if (!handleRaw) return null;
-  const handle = handleRaw.trim().replace(/^@/, '').replace(/^https?:\/\/(www\.)?paypal\.me\//i, '').replace(/\/$/, '');
+  let handle = handleRaw.trim();
+  handle = handle.replace(/^https?:\/\//i, '');
+  handle = handle.replace(/^(www\.)?paypal\.me\//i, '');
+  handle = handle.replace(/^@/, '');
+  handle = handle.replace(/\/+$/, '');
   if (!handle) return null;
   const amt = amount ? `/${amount}` : '';
   return `https://paypal.me/${handle}${amt}`;
@@ -182,6 +186,7 @@ function animalsPattern(color, opacity, size) {
   return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
 }
 const BODY_ANIMALS = animalsPattern(C.brass, 0.16, 340);
+const HERO_ANIMALS = animalsPattern(C.brass, 0.3, 300);
 
 // ---------- Small UI atoms ----------
 function Toast({ message, onDone }) {
@@ -915,7 +920,7 @@ export default function BabyRegistry() {
       `}</style>
 
       {/* Hero */}
-      <header className="relative px-6 py-16 overflow-hidden" style={{ backgroundColor: C.ink, backgroundImage: HERO_LATTICE, backgroundRepeat: 'repeat' }}>
+      <header className="relative px-6 py-16 overflow-hidden" style={{ backgroundColor: C.ink, backgroundImage: `${HERO_ANIMALS}, ${HERO_LATTICE}`, backgroundRepeat: 'repeat, repeat' }}>
         <IconCamel className="hidden sm:block absolute pointer-events-none" style={{ top: '10px', left: '16px', width: '132px', height: 'auto', color: C.brass, opacity: 0.45 }} />
         <IconPoodle className="hidden sm:block absolute pointer-events-none" style={{ bottom: '4px', left: '40px', width: '84px', height: 'auto', color: C.brass, opacity: 0.45 }} />
         <IconGazelle className="hidden sm:block absolute pointer-events-none" style={{ bottom: '14px', right: '20px', width: '128px', height: 'auto', color: C.brass, opacity: 0.45 }} />
