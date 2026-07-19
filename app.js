@@ -174,8 +174,19 @@ function GiftCard({ item, settings, isAdmin, onReserve, onContribute, onUnreserv
   const [mode, setMode] = useState(null);
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
+  const [noteCopied, setNoteCopied] = useState(false);
   const meta = CATEGORY_META[item.category] || CATEGORY_META.altro;
   const Icon = meta.icon;
+  const suggestedNote = `Gift Card per: ${item.name}`;
+  const copyNote = async () => {
+    try {
+      await navigator.clipboard.writeText(suggestedNote);
+      setNoteCopied(true);
+      setTimeout(() => setNoteCopied(false), 2e3);
+    } catch {
+      setNoteCopied(false);
+    }
+  };
   const status = item.reservedBy ? "reserved" : item.price != null && item.contributed >= item.price ? "funded" : item.completed ? "completed" : "open";
   const closeForm = () => {
     setMode(null);
@@ -293,7 +304,7 @@ function GiftCard({ item, settings, isAdmin, onReserve, onContribute, onUnreserv
         className: "px-3 py-2 rounded-lg text-sm border outline-none",
         style: { borderColor: C.cardBorder }
       }
-    ), Number(amount) > 0 && /* @__PURE__ */ React.createElement("p", { className: "text-xs", style: { color: C.sage } }, "\u2248 ", Math.round(Number(amount) * (settings.eurRate || 0)), " \u20AC circa"), /* @__PURE__ */ React.createElement("p", { className: "text-xs", style: { color: C.textMuted } }, "La Gift Card viene segnata come inviata quando confermi qui sotto. Il pagamento vero e proprio avviene su PayPal."), /* @__PURE__ */ React.createElement("div", { className: "flex gap-2 mt-1" }, /* @__PURE__ */ React.createElement(
+    ), Number(amount) > 0 && /* @__PURE__ */ React.createElement("p", { className: "text-xs", style: { color: C.sage } }, "\u2248 ", Math.round(Number(amount) * (settings.eurRate || 0)), " \u20AC circa"), /* @__PURE__ */ React.createElement("div", { className: "flex items-center justify-between gap-2 p-2 rounded-lg", style: { backgroundColor: C.card, border: `1px solid ${C.cardBorder}` } }, /* @__PURE__ */ React.createElement("span", { className: "text-xs truncate", style: { color: C.text } }, 'Nota per PayPal: "', suggestedNote, '"'), /* @__PURE__ */ React.createElement("button", { onClick: copyNote, className: "text-xs font-semibold shrink-0", style: { color: C.brass } }, noteCopied ? "Copiato \u2713" : "Copia")), /* @__PURE__ */ React.createElement("p", { className: "text-xs", style: { color: C.textMuted } }, "PayPal non permette di precompilare la nota da un link: copiala e incollala tu nel campo note quando arrivi su PayPal."), /* @__PURE__ */ React.createElement("p", { className: "text-xs", style: { color: C.textMuted } }, "La Gift Card viene segnata come inviata quando confermi qui sotto. Il pagamento vero e proprio avviene su PayPal."), /* @__PURE__ */ React.createElement("div", { className: "flex gap-2 mt-1" }, /* @__PURE__ */ React.createElement(
       "button",
       {
         onClick: submitContribute,

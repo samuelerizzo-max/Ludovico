@@ -228,9 +228,20 @@ function GiftCard({ item, settings, isAdmin, onReserve, onContribute, onUnreserv
   const [mode, setMode] = useState(null); // 'choice' | 'address' | 'contribute' | null
   const [name, setName] = useState('');
   const [amount, setAmount] = useState('');
+  const [noteCopied, setNoteCopied] = useState(false);
 
   const meta = CATEGORY_META[item.category] || CATEGORY_META.altro;
   const Icon = meta.icon;
+  const suggestedNote = `Gift Card per: ${item.name}`;
+  const copyNote = async () => {
+    try {
+      await navigator.clipboard.writeText(suggestedNote);
+      setNoteCopied(true);
+      setTimeout(() => setNoteCopied(false), 2000);
+    } catch {
+      setNoteCopied(false);
+    }
+  };
 
   const status = item.reservedBy
     ? 'reserved'
@@ -421,6 +432,15 @@ function GiftCard({ item, settings, isAdmin, onReserve, onContribute, onUnreserv
           {Number(amount) > 0 && (
             <p className="text-xs" style={{ color: C.sage }}>≈ {Math.round(Number(amount) * (settings.eurRate || 0))} € circa</p>
           )}
+          <div className="flex items-center justify-between gap-2 p-2 rounded-lg" style={{ backgroundColor: C.card, border: `1px solid ${C.cardBorder}` }}>
+            <span className="text-xs truncate" style={{ color: C.text }}>Nota per PayPal: "{suggestedNote}"</span>
+            <button onClick={copyNote} className="text-xs font-semibold shrink-0" style={{ color: C.brass }}>
+              {noteCopied ? 'Copiato ✓' : 'Copia'}
+            </button>
+          </div>
+          <p className="text-xs" style={{ color: C.textMuted }}>
+            PayPal non permette di precompilare la nota da un link: copiala e incollala tu nel campo note quando arrivi su PayPal.
+          </p>
           <p className="text-xs" style={{ color: C.textMuted }}>
             La Gift Card viene segnata come inviata quando confermi qui sotto. Il pagamento vero e proprio avviene su PayPal.
           </p>
