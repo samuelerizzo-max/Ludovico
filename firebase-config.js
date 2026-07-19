@@ -7,7 +7,7 @@
 // Sostituisci i valori tra virgolette qui sotto con quelli che copi da lì.
 // Non sono informazioni segrete: sono pensate per stare in un sito pubblico.
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyA8UFtmmYQ_3Axp0gMCEYzkE_1AYvdrPlI",
   authDomain: "lista-ludovico.firebaseapp.com",
   projectId: "lista-ludovico",
