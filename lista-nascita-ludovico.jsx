@@ -86,6 +86,84 @@ const HERO_LATTICE = latticePattern(C.brass, 0.4, 64);
 const BODY_LATTICE = latticePattern(C.brass, 0.07, 72);
 const ARCH_DIVIDER = archDividerPattern(C.linen, 48, 26);
 
+// ---------- Decorative hero silhouettes ----------
+function IconCamel(props) {
+  return (
+    <svg viewBox="0 0 200 120" {...props}>
+      <path
+        d="M 60 112 L 62 78 C 58 62 62 48 74 42 C 80 32 88 22 96 22 C 104 22 110 30 108 42
+           C 118 44 128 46 134 52 C 138 44 146 34 156 26 C 163 20 171 18 176 22 C 180 25 178 30 172 31
+           C 168 32 165 29 166 26 C 158 32 150 42 146 52 C 144 58 142 64 140 70 L 138 112
+           M 122 78 L 120 112 M 96 80 L 94 112 M 78 80 L 76 112
+           M 58 68 C 52 70 48 76 50 82"
+        fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function IconGazelle(props) {
+  return (
+    <svg viewBox="0 0 200 120" {...props}>
+      <path
+        d="M 40 70 C 40 62 46 58 54 58 C 66 56 80 55 92 56 C 104 54 116 48 124 38
+           C 128 33 132 28 136 26 C 130 24 126 20 126 15 M 136 26 C 138 30 140 26 142 22
+           M 126 15 C 122 18 120 22 121 27 L 136 26 C 132 32 128 38 130 46 L 128 66 M 92 56 L 96 66"
+        fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round"
+      />
+      <path d="M 50 66 L 48 100 M 62 66 L 60 100 M 108 62 L 110 100 M 122 60 L 126 100"
+        fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" />
+      <path d="M 42 62 C 36 64 33 68 34 73" fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function IconPoodle(props) {
+  return (
+    <svg viewBox="0 0 160 140" {...props}>
+      <path
+        d="M 62 38 a 6 6 0 0 1 5 -9 a 6 6 0 0 1 9 -4 a 6 6 0 0 1 10 0 a 6 6 0 0 1 9 4 a 6 6 0 0 1 5 9
+           a 7 7 0 0 1 2 10 a 7 7 0 0 1 -3 9 a 7 7 0 0 1 -8 5 a 8 8 0 0 1 -20 0 a 7 7 0 0 1 -8 -5
+           a 7 7 0 0 1 -3 -9 a 7 7 0 0 1 2 -10 Z"
+        fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"
+      />
+      <path d="M 58 40 C 50 44 48 54 52 62 C 55 66 60 65 61 60" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+      <path
+        d="M 50 72 a 7 7 0 0 1 4 -8 a 8 8 0 0 1 10 -5 a 9 9 0 0 1 12 -2 a 9 9 0 0 1 12 2 a 8 8 0 0 1 10 5
+           a 7 7 0 0 1 4 8 a 8 8 0 0 1 2 10 a 8 8 0 0 1 -3 10 a 9 9 0 0 1 -48 0 a 8 8 0 0 1 -3 -10 a 8 8 0 0 1 2 -10 Z"
+        fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round"
+      />
+      <path d="M 58 100 L 56 118" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+      <circle cx="55" cy="122" r="4" fill="none" stroke="currentColor" strokeWidth="2.2" />
+      <path d="M 104 100 L 106 118" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+      <circle cx="107" cy="122" r="4" fill="none" stroke="currentColor" strokeWidth="2.2" />
+      <path d="M 108 78 C 118 74 124 66 122 58" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+      <circle cx="122" cy="54" r="6" fill="none" stroke="currentColor" strokeWidth="2.2" />
+    </svg>
+  );
+}
+
+function IconFlagUAE(props) {
+  return (
+    <svg viewBox="0 0 60 36" {...props}>
+      <rect x="0" y="0" width="15" height="36" fill="#B85C4A" />
+      <rect x="15" y="0" width="45" height="12" fill="#7A8F5C" />
+      <rect x="15" y="12" width="45" height="12" fill="#EFE6D3" />
+      <rect x="15" y="24" width="45" height="12" fill="#2A3138" />
+    </svg>
+  );
+}
+
+function IconFlagItaly(props) {
+  return (
+    <svg viewBox="0 0 60 36" {...props}>
+      <rect x="0" y="0" width="20" height="36" fill="#7A8F5C" />
+      <rect x="20" y="0" width="20" height="36" fill="#EFE6D3" />
+      <rect x="40" y="0" width="20" height="36" fill="#B85C4A" />
+    </svg>
+  );
+}
+
 // ---------- Small UI atoms ----------
 function Toast({ message, onDone }) {
   useEffect(() => {
@@ -769,8 +847,15 @@ export default function BabyRegistry() {
       `}</style>
 
       {/* Hero */}
-      <header className="relative px-6 py-16" style={{ backgroundColor: C.ink, backgroundImage: HERO_LATTICE, backgroundRepeat: 'repeat' }}>
-        <div className="max-w-4xl mx-auto text-center flex flex-col items-center gap-3">
+      <header className="relative px-6 py-16 overflow-hidden" style={{ backgroundColor: C.ink, backgroundImage: HERO_LATTICE, backgroundRepeat: 'repeat' }}>
+        <IconCamel className="hidden sm:block absolute pointer-events-none" style={{ top: '10px', left: '16px', width: '132px', height: 'auto', color: C.brass, opacity: 0.45 }} />
+        <IconPoodle className="hidden sm:block absolute pointer-events-none" style={{ bottom: '4px', left: '40px', width: '84px', height: 'auto', color: C.brass, opacity: 0.45 }} />
+        <IconGazelle className="hidden sm:block absolute pointer-events-none" style={{ bottom: '14px', right: '20px', width: '128px', height: 'auto', color: C.brass, opacity: 0.45 }} />
+        <div className="hidden sm:flex absolute flex-col gap-2" style={{ top: '22px', right: '28px' }}>
+          <IconFlagUAE className="rounded-sm" style={{ width: '38px', height: 'auto', opacity: 0.8 }} />
+          <IconFlagItaly className="rounded-sm" style={{ width: '38px', height: 'auto', opacity: 0.8 }} />
+        </div>
+        <div className="max-w-4xl mx-auto text-center flex flex-col items-center gap-3 relative">
           <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: C.brassSoft }}>Lista nascita</span>
           <h1 className="font-display text-4xl sm:text-5xl" style={{ color: C.textOnInk }}>{settings.babyName}</h1>
           <p className="text-sm" style={{ color: C.textOnInkMuted }}>Arriva a {settings.dueLabel}</p>

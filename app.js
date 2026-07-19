@@ -89,6 +89,68 @@ function archDividerPattern(fillColor, tileWidth, tileHeight) {
 var HERO_LATTICE = latticePattern(C.brass, 0.4, 64);
 var BODY_LATTICE = latticePattern(C.brass, 0.07, 72);
 var ARCH_DIVIDER = archDividerPattern(C.linen, 48, 26);
+function IconCamel(props) {
+  return /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 200 120", ...props }, /* @__PURE__ */ React.createElement(
+    "path",
+    {
+      d: "M 60 112 L 62 78 C 58 62 62 48 74 42 C 80 32 88 22 96 22 C 104 22 110 30 108 42\n           C 118 44 128 46 134 52 C 138 44 146 34 156 26 C 163 20 171 18 176 22 C 180 25 178 30 172 31\n           C 168 32 165 29 166 26 C 158 32 150 42 146 52 C 144 58 142 64 140 70 L 138 112\n           M 122 78 L 120 112 M 96 80 L 94 112 M 78 80 L 76 112\n           M 58 68 C 52 70 48 76 50 82",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2.5",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }
+  ));
+}
+function IconGazelle(props) {
+  return /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 200 120", ...props }, /* @__PURE__ */ React.createElement(
+    "path",
+    {
+      d: "M 40 70 C 40 62 46 58 54 58 C 66 56 80 55 92 56 C 104 54 116 48 124 38\n           C 128 33 132 28 136 26 C 130 24 126 20 126 15 M 136 26 C 138 30 140 26 142 22\n           M 126 15 C 122 18 120 22 121 27 L 136 26 C 132 32 128 38 130 46 L 128 66 M 92 56 L 96 66",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2.3",
+      strokeLinecap: "round",
+      strokeLinejoin: "round"
+    }
+  ), /* @__PURE__ */ React.createElement(
+    "path",
+    {
+      d: "M 50 66 L 48 100 M 62 66 L 60 100 M 108 62 L 110 100 M 122 60 L 126 100",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2.3",
+      strokeLinecap: "round"
+    }
+  ), /* @__PURE__ */ React.createElement("path", { d: "M 42 62 C 36 64 33 68 34 73", fill: "none", stroke: "currentColor", strokeWidth: "2.3", strokeLinecap: "round" }));
+}
+function IconPoodle(props) {
+  return /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 160 140", ...props }, /* @__PURE__ */ React.createElement(
+    "path",
+    {
+      d: "M 62 38 a 6 6 0 0 1 5 -9 a 6 6 0 0 1 9 -4 a 6 6 0 0 1 10 0 a 6 6 0 0 1 9 4 a 6 6 0 0 1 5 9\n           a 7 7 0 0 1 2 10 a 7 7 0 0 1 -3 9 a 7 7 0 0 1 -8 5 a 8 8 0 0 1 -20 0 a 7 7 0 0 1 -8 -5\n           a 7 7 0 0 1 -3 -9 a 7 7 0 0 1 2 -10 Z",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2.2",
+      strokeLinejoin: "round"
+    }
+  ), /* @__PURE__ */ React.createElement("path", { d: "M 58 40 C 50 44 48 54 52 62 C 55 66 60 65 61 60", fill: "none", stroke: "currentColor", strokeWidth: "2.2", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement(
+    "path",
+    {
+      d: "M 50 72 a 7 7 0 0 1 4 -8 a 8 8 0 0 1 10 -5 a 9 9 0 0 1 12 -2 a 9 9 0 0 1 12 2 a 8 8 0 0 1 10 5\n           a 7 7 0 0 1 4 8 a 8 8 0 0 1 2 10 a 8 8 0 0 1 -3 10 a 9 9 0 0 1 -48 0 a 8 8 0 0 1 -3 -10 a 8 8 0 0 1 2 -10 Z",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2.2",
+      strokeLinejoin: "round"
+    }
+  ), /* @__PURE__ */ React.createElement("path", { d: "M 58 100 L 56 118", fill: "none", stroke: "currentColor", strokeWidth: "2.2", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("circle", { cx: "55", cy: "122", r: "4", fill: "none", stroke: "currentColor", strokeWidth: "2.2" }), /* @__PURE__ */ React.createElement("path", { d: "M 104 100 L 106 118", fill: "none", stroke: "currentColor", strokeWidth: "2.2", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("circle", { cx: "107", cy: "122", r: "4", fill: "none", stroke: "currentColor", strokeWidth: "2.2" }), /* @__PURE__ */ React.createElement("path", { d: "M 108 78 C 118 74 124 66 122 58", fill: "none", stroke: "currentColor", strokeWidth: "2.2", strokeLinecap: "round" }), /* @__PURE__ */ React.createElement("circle", { cx: "122", cy: "54", r: "6", fill: "none", stroke: "currentColor", strokeWidth: "2.2" }));
+}
+function IconFlagUAE(props) {
+  return /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 60 36", ...props }, /* @__PURE__ */ React.createElement("rect", { x: "0", y: "0", width: "15", height: "36", fill: "#B85C4A" }), /* @__PURE__ */ React.createElement("rect", { x: "15", y: "0", width: "45", height: "12", fill: "#7A8F5C" }), /* @__PURE__ */ React.createElement("rect", { x: "15", y: "12", width: "45", height: "12", fill: "#EFE6D3" }), /* @__PURE__ */ React.createElement("rect", { x: "15", y: "24", width: "45", height: "12", fill: "#2A3138" }));
+}
+function IconFlagItaly(props) {
+  return /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 60 36", ...props }, /* @__PURE__ */ React.createElement("rect", { x: "0", y: "0", width: "20", height: "36", fill: "#7A8F5C" }), /* @__PURE__ */ React.createElement("rect", { x: "20", y: "0", width: "20", height: "36", fill: "#EFE6D3" }), /* @__PURE__ */ React.createElement("rect", { x: "40", y: "0", width: "20", height: "36", fill: "#B85C4A" }));
+}
 function Toast({ message, onDone }) {
   useEffect(() => {
     const t = setTimeout(onDone, 2600);
@@ -518,7 +580,7 @@ function BabyRegistry() {
         @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&display=swap');
         * { font-family: 'Karla', sans-serif; }
         .font-display { font-family: 'Fraunces', serif !important; }
-      `), /* @__PURE__ */ React.createElement("header", { className: "relative px-6 py-16", style: { backgroundColor: C.ink, backgroundImage: HERO_LATTICE, backgroundRepeat: "repeat" } }, /* @__PURE__ */ React.createElement("div", { className: "max-w-4xl mx-auto text-center flex flex-col items-center gap-3" }, /* @__PURE__ */ React.createElement("span", { className: "text-xs font-semibold uppercase tracking-widest", style: { color: C.brassSoft } }, "Lista nascita"), /* @__PURE__ */ React.createElement("h1", { className: "font-display text-4xl sm:text-5xl", style: { color: C.textOnInk } }, settings.babyName), /* @__PURE__ */ React.createElement("p", { className: "text-sm", style: { color: C.textOnInkMuted } }, "Arriva a ", settings.dueLabel), /* @__PURE__ */ React.createElement("p", { className: "text-base max-w-xl mt-2", style: { color: C.textOnInk } }, settings.welcomeMessage), /* @__PURE__ */ React.createElement("p", { className: "text-xs max-w-md mt-1", style: { color: C.textOnInkMuted } }, "Scegli un regalo qui sotto: puoi comprarlo tu stesso sul sito del negozio, oppure inviare un contributo \u2014 ci pensiamo noi.")), /* @__PURE__ */ React.createElement(
+      `), /* @__PURE__ */ React.createElement("header", { className: "relative px-6 py-16 overflow-hidden", style: { backgroundColor: C.ink, backgroundImage: HERO_LATTICE, backgroundRepeat: "repeat" } }, /* @__PURE__ */ React.createElement(IconCamel, { className: "hidden sm:block absolute pointer-events-none", style: { top: "10px", left: "16px", width: "132px", height: "auto", color: C.brass, opacity: 0.45 } }), /* @__PURE__ */ React.createElement(IconPoodle, { className: "hidden sm:block absolute pointer-events-none", style: { bottom: "4px", left: "40px", width: "84px", height: "auto", color: C.brass, opacity: 0.45 } }), /* @__PURE__ */ React.createElement(IconGazelle, { className: "hidden sm:block absolute pointer-events-none", style: { bottom: "14px", right: "20px", width: "128px", height: "auto", color: C.brass, opacity: 0.45 } }), /* @__PURE__ */ React.createElement("div", { className: "hidden sm:flex absolute flex-col gap-2", style: { top: "22px", right: "28px" } }, /* @__PURE__ */ React.createElement(IconFlagUAE, { className: "rounded-sm", style: { width: "38px", height: "auto", opacity: 0.8 } }), /* @__PURE__ */ React.createElement(IconFlagItaly, { className: "rounded-sm", style: { width: "38px", height: "auto", opacity: 0.8 } })), /* @__PURE__ */ React.createElement("div", { className: "max-w-4xl mx-auto text-center flex flex-col items-center gap-3 relative" }, /* @__PURE__ */ React.createElement("span", { className: "text-xs font-semibold uppercase tracking-widest", style: { color: C.brassSoft } }, "Lista nascita"), /* @__PURE__ */ React.createElement("h1", { className: "font-display text-4xl sm:text-5xl", style: { color: C.textOnInk } }, settings.babyName), /* @__PURE__ */ React.createElement("p", { className: "text-sm", style: { color: C.textOnInkMuted } }, "Arriva a ", settings.dueLabel), /* @__PURE__ */ React.createElement("p", { className: "text-base max-w-xl mt-2", style: { color: C.textOnInk } }, settings.welcomeMessage), /* @__PURE__ */ React.createElement("p", { className: "text-xs max-w-md mt-1", style: { color: C.textOnInkMuted } }, "Scegli un regalo qui sotto: puoi comprarlo tu stesso sul sito del negozio, oppure inviare un contributo \u2014 ci pensiamo noi.")), /* @__PURE__ */ React.createElement(
     "div",
     {
       className: "absolute bottom-0 left-0 right-0",
