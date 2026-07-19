@@ -3,8 +3,8 @@
 // Il resto dell'app (app.js) non sa la differenza: nessuna modifica lì dentro.
 
 import { firebaseConfig } from './firebase-config.js';
-import { initializeApp } from 'firebase/app';
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js';
+import { getFirestore, doc, getDoc, setDoc } from 'https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js';
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
