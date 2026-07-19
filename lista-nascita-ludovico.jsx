@@ -46,7 +46,7 @@ function uid() {
   return 'g' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 }
 
-function paypalLinkFor(handleRaw, amount) {
+function paypalLinkFor(handleRaw, amount, currencyCode) {
   if (!handleRaw) return null;
   let handle = handleRaw.trim();
   handle = handle.replace(/^https?:\/\//i, '');
@@ -54,7 +54,7 @@ function paypalLinkFor(handleRaw, amount) {
   handle = handle.replace(/^@/, '');
   handle = handle.replace(/\/+$/, '');
   if (!handle) return null;
-  const amt = amount ? `/${amount}` : '';
+  const amt = amount ? `/${amount}${currencyCode || ''}` : '';
   return `https://paypal.me/${handle}${amt}`;
 }
 
@@ -264,10 +264,12 @@ function GiftCard({ item, settings, isAdmin, onReserve, onContribute, onUnreserv
     closeForm();
   };
   const submitContribute = () => {
-    const amt = Number(amount);
-    if (!amt || amt <= 0) return;
-    onContribute(item.id, name, amt);
-    const link = paypalLinkFor(settings.paypalHandle, amt);
+    const eurAmt = Number(amount);
+    if (!eurAmt || eurAmt <= 0) return;
+    const rate = settings.eurRate || 0.238;
+    const aedAmt = Math.round(eurAmt / rate);
+    onContribute(item.id, name, aedAmt);
+    const link = paypalLinkFor(settings.paypalHandle, eurAmt, 'EUR');
     if (link) window.open(link, '_blank', 'noopener');
     closeForm();
   };
@@ -429,14 +431,17 @@ function GiftCard({ item, settings, isAdmin, onReserve, onContribute, onUnreserv
             value={name} onChange={(e) => setName(e.target.value)} placeholder="Nome"
             className="px-3 py-2 rounded-lg text-sm border outline-none" style={{ borderColor: C.cardBorder }}
           />
-          <label className="text-xs font-medium mt-1" style={{ color: C.textMuted }}>Quanto vuoi inviare ({settings.currency})</label>
+          <label className="text-xs font-medium mt-1" style={{ color: C.textMuted }}>Quanto vuoi inviare (EUR)</label>
           <input
-            value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="100" type="number" min="1"
+            value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="25" type="number" min="1"
             className="px-3 py-2 rounded-lg text-sm border outline-none" style={{ borderColor: C.cardBorder }}
           />
           {Number(amount) > 0 && (
-            <p className="text-xs" style={{ color: C.sage }}>≈ {Math.round(Number(amount) * (settings.eurRate || 0))} € circa</p>
+            <p className="text-xs" style={{ color: C.sage }}>≈ {Math.round(Number(amount) / (settings.eurRate || 0.238))} {settings.currency} circa</p>
           )}
+          <p className="text-xs" style={{ color: C.textMuted }}>
+            Il pagamento su PayPal avviene in euro, indipendentemente dalla valuta mostrata sui regali.
+          </p>
           <div className="flex items-center justify-between gap-2 p-2 rounded-lg" style={{ backgroundColor: C.card, border: `1px solid ${C.cardBorder}` }}>
             <span className="text-xs truncate" style={{ color: C.text }}>Nota per PayPal: "{suggestedNote}"</span>
             <button onClick={copyNote} className="text-xs font-semibold shrink-0" style={{ color: C.brass }}>
