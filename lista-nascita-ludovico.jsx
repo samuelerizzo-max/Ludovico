@@ -349,7 +349,7 @@ function GiftCard({ item, settings, isAdmin, onReserve, onContribute, onUnreserv
             className="flex-1 min-w-[130px] px-3 py-2 rounded-xl text-sm font-semibold flex items-center justify-center gap-1.5 border transition hover:-translate-y-0.5"
             style={{ borderColor: C.brass, color: C.brass, backgroundColor: 'transparent' }}
           >
-            Contribuisci <Heart className="w-3.5 h-3.5" />
+            Manda Gift Card <Heart className="w-3.5 h-3.5" />
           </button>
           <button onClick={() => setMode(null)} className="text-xs underline w-full text-left" style={{ color: C.textMuted }}>annulla</button>
           {isAdmin && item.price == null && (
@@ -388,6 +388,7 @@ function GiftCard({ item, settings, isAdmin, onReserve, onContribute, onUnreserv
 
       {mode === 'contribute' && (
         <div className="flex flex-col gap-2 mt-1 p-3 rounded-xl" style={{ backgroundColor: C.linen }}>
+          <p className="text-sm font-semibold" style={{ color: C.text }}>Manda una Gift Card via PayPal</p>
           <label className="text-xs font-medium" style={{ color: C.textMuted }}>Il tuo nome (facoltativo)</label>
           <input
             value={name} onChange={(e) => setName(e.target.value)} placeholder="Nome"
@@ -402,7 +403,7 @@ function GiftCard({ item, settings, isAdmin, onReserve, onContribute, onUnreserv
             <p className="text-xs" style={{ color: C.sage }}>≈ {Math.round(Number(amount) * (settings.eurRate || 0))} € circa</p>
           )}
           <p className="text-xs" style={{ color: C.textMuted }}>
-            Il contributo viene segnato come inviato quando confermi. Il pagamento vero e proprio avviene su PayPal.
+            La Gift Card viene segnata come inviata quando confermi qui sotto. Il pagamento vero e proprio avviene su PayPal.
           </p>
           <div className="flex gap-2 mt-1">
             <button
@@ -541,8 +542,20 @@ function AdminPanel({ settings, items, initialEditItem, onClose, onSaveSettings,
   const [currency, setCurrency] = useState(settings.currency);
   const [eurRate, setEurRate] = useState(settings.eurRate);
   const [shippingAddress, setShippingAddress] = useState(settings.shippingAddress);
+  const [newPasscode, setNewPasscode] = useState('');
+  const [confirmPasscode, setConfirmPasscode] = useState('');
+  const [passcodeErr, setPasscodeErr] = useState('');
 
   const saveGeneral = () => onSaveSettings({ ...settings, babyName, dueLabel, welcomeMessage, paypalHandle, currency, eurRate: Number(eurRate) || 0, shippingAddress });
+
+  const changePasscode = () => {
+    if (newPasscode.trim().length < 4) { setPasscodeErr('Almeno 4 caratteri.'); return; }
+    if (newPasscode !== confirmPasscode) { setPasscodeErr('Le due password non coincidono.'); return; }
+    onSaveSettings({ ...settings, adminPasscode: newPasscode.trim() });
+    setPasscodeErr('');
+    setNewPasscode('');
+    setConfirmPasscode('');
+  };
 
   const ledger = [];
   items.forEach((it) => {
@@ -572,7 +585,7 @@ function AdminPanel({ settings, items, initialEditItem, onClose, onSaveSettings,
           <div className="flex flex-col gap-2">
             {ledger.length === 0 && (
               <p className="text-sm p-4 rounded-xl" style={{ backgroundColor: C.card, color: C.textMuted, border: `1px solid ${C.cardBorder}` }}>
-                Nessuna prenotazione o contributo ancora registrato.
+                Nessuna prenotazione o Gift Card ancora registrata.
               </p>
             )}
             {ledger.map((row, idx) => (
@@ -580,7 +593,7 @@ function AdminPanel({ settings, items, initialEditItem, onClose, onSaveSettings,
                 <div className="min-w-0">
                   <p className="text-sm font-semibold truncate" style={{ color: C.text }}>{row.name}</p>
                   <p className="text-xs truncate" style={{ color: C.textMuted }}>
-                    {row.type === 'reserve' ? 'Compra direttamente: ' : 'Contributo per: '}
+                    {row.type === 'reserve' ? 'Compra direttamente: ' : 'Gift Card per: '}
                     {row.itemName} · {formatDate(row.date)}
                   </p>
                 </div>
@@ -629,6 +642,22 @@ function AdminPanel({ settings, items, initialEditItem, onClose, onSaveSettings,
               <p className="text-xs mt-1" style={{ color: C.textMuted }}>Mostrato agli ospiti che scelgono "Lo compro io", prima di aprire il sito del negozio.</p>
             </div>
             <button onClick={saveGeneral} className="px-4 py-2 rounded-lg text-sm font-semibold w-fit" style={{ backgroundColor: C.ink, color: C.textOnInk }}>Salva impostazioni</button>
+          </div>
+        </section>
+
+        <section className="mb-8">
+          <h3 className="text-xs font-semibold uppercase tracking-wide mb-3" style={{ color: C.textMuted }}>Password di gestione</h3>
+          <div className="flex flex-col gap-3 p-4 rounded-2xl" style={{ backgroundColor: C.card, border: `1px solid ${C.cardBorder}` }}>
+            <div>
+              <label className="text-xs font-medium" style={{ color: C.textMuted }}>Nuova password</label>
+              <input value={newPasscode} onChange={(e) => setNewPasscode(e.target.value)} type="password" className="w-full px-3 py-2 rounded-lg text-sm border outline-none mt-1" style={{ borderColor: C.cardBorder }} />
+            </div>
+            <div>
+              <label className="text-xs font-medium" style={{ color: C.textMuted }}>Conferma nuova password</label>
+              <input value={confirmPasscode} onChange={(e) => setConfirmPasscode(e.target.value)} type="password" className="w-full px-3 py-2 rounded-lg text-sm border outline-none mt-1" style={{ borderColor: C.cardBorder }} />
+            </div>
+            {passcodeErr && <p className="text-xs" style={{ color: '#B24444' }}>{passcodeErr}</p>}
+            <button onClick={changePasscode} className="px-4 py-2 rounded-lg text-sm font-semibold w-fit" style={{ backgroundColor: C.brass, color: C.textOnInk }}>Aggiorna password</button>
           </div>
         </section>
 
@@ -861,7 +890,7 @@ export default function BabyRegistry() {
           <p className="text-sm" style={{ color: C.textOnInkMuted }}>Arriva a {settings.dueLabel}</p>
           <p className="text-base max-w-xl mt-2" style={{ color: C.textOnInk }}>{settings.welcomeMessage}</p>
           <p className="text-xs max-w-md mt-1" style={{ color: C.textOnInkMuted }}>
-            Scegli un regalo qui sotto: puoi comprarlo tu stesso sul sito del negozio, oppure inviare un contributo — ci pensiamo noi.
+            Scegli un regalo qui sotto: puoi comprarlo tu stesso sul sito del negozio, oppure mandare una Gift Card via PayPal — ci pensiamo noi.
           </p>
         </div>
         <div
